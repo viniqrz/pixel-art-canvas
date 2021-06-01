@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.black {
+  background-color: rgb(0, 0, 0);
+}
+
+.pink {
+  background-color: #ef476f;
+}
+
+.yellow {
+  background-color: #ffd166;
+}
+
+.green {
+  background-color: #06d6a0;
+}
+
+.blue {
+  background-color: #118ab2;
+}
+
+#title {
+
+}
+
+#color-palette {
+  list-style: none;
+  display: flex;
+}
+
+#color-palette .color {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+#pixel-board {
+
+}
+
+.pixel {
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border: 1px solid black;
+}
