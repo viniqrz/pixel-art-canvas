@@ -49,6 +49,10 @@
   background-color: tomato;
 }
 
+.pixel-board-container {
+
+}
+
 .pixel {
   list-style: none;
   width: 40px;
@@ -56,6 +60,14 @@
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
+}
+
+.board-form {
+  display: inline-block;
+}
+
+#board-size {
+  padding: 1rem;
 }
 
 .selected {

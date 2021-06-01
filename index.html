@@ -13,14 +13,21 @@
   
   <ul id="color-palette">
     <li class="color black selected"></li>
-    <li class="color pink"></li>
-    <li class="color yellow"></li>
-    <li class="color green"></li>
+    <li class="color"></li>
+    <li class="color"></li>
+    <li class="color"></li>
   </ul>
 
-  <ul id="pixel-board">
-    
-  </ul>
+  <form class="board-form">
+    <input id="board-size" type="number" min="1" placeholder="Board Size (5-50px)">
+    <button id="generate-board" type="submit">VQV</button>
+  </form>
+
+  <button id="clear-board">Limpar</button>
+
+  <div class="pixel-board-container">
+    <ul id="pixel-board"></ul>
+  </div>
 
 </body>
 </html>
