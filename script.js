@@ -10,9 +10,12 @@ let selectedColor = 'rgb(0,0,0)';
 let mouseTimer = 0;
 let pressed = false;
 
+
 for (let i = 1; i < colors.length; i++) {
   const n = Math.round(Math.random() * 250);
-  colors[i].style.backgroundColor = `rgb(${n/80},${n},${n/2})`;
+  const n2 = Math.round(Math.random() * 250);
+  const n3 = Math.round(Math.random() * 250);
+  colors[i].style.backgroundColor = `rgb(${n},${n2},${n3})`;
 }
 
 const createPixels = (n) => {
@@ -33,7 +36,9 @@ const resizeBoard = (value) => {
   pixelBoard.style.width = value * 40 + 'px';
   pixelBoard.style.height = value * 40 + 'px';
 
-  createPixels(value * value);
+  setTimeout(() => {
+    createPixels(value * value);
+  }, 1000);
 }
 
 colorPalette.addEventListener('click', function(e) {
@@ -58,11 +63,11 @@ pixelBoard.addEventListener('mouseover', function(e) {
   if (e.target.classList.contains('pixel') && pressed === true) {
     e.target.style.backgroundColor = selectedColor;
   }
-})
+});
 
 pixelBoard.addEventListener('mouseup', function(e) {
   pressed = false;
-})
+});
 
 btnClear.addEventListener('click', clearBoard);
 
@@ -86,7 +91,7 @@ if (pressed) {
     }
   
     pressed = true;
-  })
+  });
 }
 
 createPixels(25);
