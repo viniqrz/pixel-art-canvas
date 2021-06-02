@@ -7,6 +7,8 @@ const pixelBoard = document.querySelector('#pixel-board');
 
 let selectedColor = 'rgb(0,0,0)';
 
+let mouseTimer = 0;
+let pressed = false;
 
 for (let i = 1; i < colors.length; i++) {
   const n = Math.round(Math.random() * 250);
@@ -43,11 +45,24 @@ colorPalette.addEventListener('click', function(e) {
   e.target.classList.add('selected');
 });
 
-pixelBoard.addEventListener('click', function(e) {
+window.ondragstart = function() { return false; } 
+
+pixelBoard.addEventListener('mousedown', function(e) {
   if (e.target.classList.contains('pixel')) {
     e.target.style.backgroundColor = selectedColor;
   }
+  pressed = true;
 });
+
+pixelBoard.addEventListener('mouseover', function(e) {
+  if (e.target.classList.contains('pixel') && pressed === true) {
+    e.target.style.backgroundColor = selectedColor;
+  }
+})
+
+pixelBoard.addEventListener('mouseup', function(e) {
+  pressed = false;
+})
 
 btnClear.addEventListener('click', clearBoard);
 
@@ -63,6 +78,16 @@ btnGenerate.addEventListener('click', function(e) {
   clearBoard();
   resizeBoard(inputSize.value);
 });
+
+if (pressed) {
+  pixelBoard.addEventListener('mouseover', function(e) {
+    if (e.target.classList.contains('pixel')) {
+      e.target.style.backgroundColor = selectedColor;
+    }
+  
+    pressed = true;
+  })
+}
 
 createPixels(25);
 
