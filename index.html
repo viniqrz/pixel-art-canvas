@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixels Art Project</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-</head>
-<body>
-  <h1 id="title">Paleta de Cores</h1>
-  
-  <ul id="color-palette">
-    <li class="color black selected"></li>
-    <li class="color"></li>
-    <li class="color"></li>
-    <li class="color"></li>
-  </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Art</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body class="light">
+    <button class="theme">Dark Theme</button>
 
-  <div class="tools">
-    <form class="board-form">
-      <input id="board-size" type="number" min="1" placeholder="Board Size">
-      <button id="generate-board" type="submit">VQV</button>
-    </form>
-    <button id="clear-board">Limpar</button>
-  </div>
+    <h1 id="title">Pixel Art Canvas</h1>
 
-  <div class="pixel-board-container">
-    <ul id="pixel-board"></ul>
-  </div>
+    <ul id="color-palette">
+      <li class="color black selected"></li>
+      <li class="color"></li>
+      <li class="color"></li>
+      <li class="color"></li>
+    </ul>
 
-</body>
+    <div class="tools">
+      <form class="board-form">
+        <input id="board-size" type="number" min="1" placeholder="Board Size" />
+        <button id="generate-board" type="submit">Set</button>
+      </form>
+      <button id="clear-board">Clear</button>
+    </div>
+
+    <div class="pixel-board-container">
+      <ul id="pixel-board"></ul>
+    </div>
+  </body>
 </html>

@@ -1,21 +1,31 @@
 const colorPalette = document.querySelector('#color-palette');
 const colors = document.querySelectorAll('.color');
 const inputSize = document.querySelector('#board-size');
+
 const btnGenerate = document.querySelector('#generate-board');
 const btnClear = document.querySelector('#clear-board');
+const btnSwitchTheme = document.querySelector('.theme');
+
 const pixelBoard = document.querySelector('#pixel-board');
+const body = document.querySelector('body');
 
-let selectedColor = 'rgb(0,0,0)';
+let selectedColor = window
+  .getComputedStyle(colorPalette.children[0])
+  .backgroundColor;
 
-let mouseTimer = 0;
 let pressed = false;
+let theme = 'light';
+
+window.ondragstart = () => { return false; }
 
 
-for (let i = 1; i < colors.length; i++) {
-  const n = Math.round(Math.random() * 250);
-  const n2 = Math.round(Math.random() * 250);
-  const n3 = Math.round(Math.random() * 250);
-  colors[i].style.backgroundColor = `rgb(${n},${n2},${n3})`;
+const randomRGB = (elements) => {
+  for (let i = 1; i < colors.length; i++) {
+    const n = Math.round(Math.random() * 250);
+    const n2 = Math.round(Math.random() * 250);
+    const n3 = Math.round(Math.random() * 250);
+    colors[i].style.backgroundColor = `rgb(${n},${n2},${n3})`;
+  }
 }
 
 const createPixels = (n) => {
@@ -41,7 +51,23 @@ const resizeBoard = (value) => {
   }, 1000);
 }
 
-colorPalette.addEventListener('click', function(e) {
+btnSwitchTheme.addEventListener('click', function (e) {
+  if (theme === 'light') {
+    body.className = 'dark';
+    this.textContent = 'Light Theme';
+    theme = 'dark';
+    return
+  }
+
+  if (theme === 'dark') {
+    body.className = 'light';
+    this.textContent = 'Dark Theme';
+    theme = 'light';
+    return
+  }
+})
+
+colorPalette.addEventListener('click', function (e) {
   for (const el of colors) {
     if (el.classList.contains('selected')) el.classList.remove('selected');
   }
@@ -50,28 +76,26 @@ colorPalette.addEventListener('click', function(e) {
   e.target.classList.add('selected');
 });
 
-window.ondragstart = function() { return false; } 
-
-pixelBoard.addEventListener('mousedown', function(e) {
+pixelBoard.addEventListener('mousedown', function (e) {
   if (e.target.classList.contains('pixel')) {
     e.target.style.backgroundColor = selectedColor;
   }
   pressed = true;
 });
 
-pixelBoard.addEventListener('mouseover', function(e) {
+pixelBoard.addEventListener('mouseover', function (e) {
   if (e.target.classList.contains('pixel') && pressed === true) {
     e.target.style.backgroundColor = selectedColor;
   }
 });
 
-pixelBoard.addEventListener('mouseup', function(e) {
+body.addEventListener('mouseup', function (e) {
   pressed = false;
 });
 
 btnClear.addEventListener('click', clearBoard);
 
-btnGenerate.addEventListener('click', function(e) {
+btnGenerate.addEventListener('click', function (e) {
   e.preventDefault();
   if (inputSize.value < 5) {
     alert('Board inválido!');
@@ -85,15 +109,16 @@ btnGenerate.addEventListener('click', function(e) {
 });
 
 if (pressed) {
-  pixelBoard.addEventListener('mouseover', function(e) {
+  pixelBoard.addEventListener('mouseover', function (e) {
     if (e.target.classList.contains('pixel')) {
       e.target.style.backgroundColor = selectedColor;
     }
-  
+
     pressed = true;
   });
 }
 
+randomRGB(colors);
 createPixels(25);
 
 
